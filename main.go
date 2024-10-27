@@ -20,15 +20,20 @@ func main() {
 
 	c.OnHTML(".quote", func(h *colly.HTMLElement) {
 		result := Resultado{}
-		result.Quote = h.ChildText("div.quoteText")
-		Parser(result.Quote)
+		s := h.ChildText("div.quoteText")
+		result = Parser(s)
 		quotes = append(quotes, result)
 	})
 
-	for i := 1; i < 2; i++ {
-		time.Sleep(5 * time.Second)
-		url := fmt.Sprintf("https://www.goodreads.com/author/quotes/17212.Marcus_Aurelius?page=%d", i)
-		c.Visit(url)
+	authors := []string{"4918776.Seneca", "17212.Marcus_Aurelius", "13852.Epictetus"}
+
+	for i := 1; i < 10; i++ {
+		for _, author := range authors {
+			time.Sleep(5 * time.Second)
+			url := fmt.Sprintf("https://www.goodreads.com/author/quotes/%s?page=%d", i, author)
+			c.Visit(url)
+		}
+
 	}
 
 	//fmt.Println(quotes)
