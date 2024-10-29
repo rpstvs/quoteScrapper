@@ -27,7 +27,7 @@ func (cfg *Configure) GetQuotes() {
 	for i := 1; i < 10; i++ {
 		for _, author := range authors {
 			time.Sleep(5 * time.Second)
-			url := fmt.Sprintf("https://www.goodreads.com/author/quotes/%s?page=%d", i, author)
+			url := fmt.Sprintf("https://www.goodreads.com/author/quotes/%s?page=%d", author, i)
 			cfg.c.Visit(url)
 		}
 

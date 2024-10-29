@@ -12,6 +12,5 @@ func main() {
 	cfg := scrapper.InitConfig("www.goodreads.com")
 
 	cfg.GetQuotes()
-	//fmt.Println(quotes)
 
 }
