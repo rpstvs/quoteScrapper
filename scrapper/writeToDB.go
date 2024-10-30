@@ -6,14 +6,16 @@ import (
 	"github.com/rpstvs/quoteScrapper/database"
 )
 
-func (cfg *Configure) WriteToDB(quotes []Resultado) {
+func (cfg *Configure) WriteToDB(quote Resultado) {
 
-	for _, quote := range quotes {
-		cfg.db.InsertQuote(context.Background(), database.InsertQuoteParams{
-			Quote:  quote.Quote,
-			Author: quote.Author,
-			Book:   quote.Book,
-		})
+	if len(quote.Author) == 1 {
+		quote.Author = quote.Book
+
 	}
+	cfg.db.InsertQuote(context.Background(), database.InsertQuoteParams{
+		Quote:  quote.Quote,
+		Author: quote.Author,
+		Book:   quote.Book,
+	})
 
 }

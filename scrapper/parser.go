@@ -13,7 +13,15 @@ func Parser(str string) Resultado {
 		}
 	}
 
-	println(cleanLines[0], strings.Trim(cleanLines[len(cleanLines)-2], ","), cleanLines[len(cleanLines)-1])
+	if len(cleanLines) == 3 {
+		return Resultado{
+			Quote:  cleanLines[0],
+			Author: strings.Trim(cleanLines[len(cleanLines)-1], ","),
+			Book:   "",
+		}
+	}
+
+	//println(cleanLines[0], strings.Trim(cleanLines[len(cleanLines)], ","), cleanLines[len(cleanLines)])
 	return Resultado{
 		Quote:  cleanLines[0],
 		Author: strings.Trim(cleanLines[len(cleanLines)-2], ","),

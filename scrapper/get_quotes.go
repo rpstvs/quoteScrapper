@@ -19,7 +19,10 @@ func (cfg *Configure) GetQuotes() {
 		result := Resultado{}
 		s := h.ChildText("div.quoteText")
 		result = Parser(s)
-		quotes = append(quotes, result)
+		if LangDetection(result.Quote) {
+			quotes = append(quotes, result)
+			cfg.WriteToDB(result)
+		}
 	})
 
 	authors := []string{"4918776.Seneca", "17212.Marcus_Aurelius", "13852.Epictetus"}
